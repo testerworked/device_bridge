@@ -2,8 +2,10 @@
 flask sample project
 
 <br>
-Microservice Project Architect: 
-run : python3 project_architect.py
+Microservice Project Architect: <br>
+run :
+<br>
+python3 project_architect.py
 <br>
 
 ![device_bridge_0](https://github.com/user-attachments/assets/6c04ed31-320a-4dfc-89f3-23c9f1c60601)
