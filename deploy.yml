@@ -1,0 +1,42 @@
+---
+- name: Deploy Docker container and run a script on the host
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Pull the Docker image
+      docker_image:
+        name: ubuntu:24.04
+        source: pull
+
+    - name: Start the Docker container
+      docker_container:
+        name: sdevbridge
+        image: ubuntu:24.04
+        command: sleep infinity
+        detach: yes
+
+    - name: Ensure netcat is installed on the host
+      apt:
+        name: netcat-openbsd
+        state: present
+
+    - name: Run the script on the host (listen on port 5000)
+      shell: |
+        /bin/bash /home/work/server/listen_port.sh
+      async: 600
+      poll: 0
+
+    - name: Ensure the script is running on the host
+      shell: |
+        ps aux | grep listen_port.sh
+      register: script_status
+      failed_when: script_status.rc != 0
+
+    - name: Debug script status
+      debug:
+        var: script_status.stdout

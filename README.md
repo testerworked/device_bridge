@@ -23,3 +23,43 @@ curl -X POST http://localhost:5000/projects \
 delete a project
 <br>
 curl -X DELETE http://localhost:5000/projects/1
+
+<br>
+----
+
+sudo docker run -it -p 5000:5000 sdevbridge /bin/bash
+
+<br>
+----------
+
+sudo docker build -t sdbidge .
+
+<br>
+------
+<br>
+
+sudo docker system prune
+
+<br>
+
+sudo docker system prune -a --volumes
+
+<br>
+
+sudo docker image prune -a
+
+<br>
+
+sudo docker builder prune
+
+<br>
+
+sudo docker builder prune --all
+
+<br>
+
+sudo docker container prune
+
+<br>
+
+sudo docker volume prune
